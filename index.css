@@ -1,0 +1,87 @@
+body{
+    background-color: #232323;
+    margin: 0;
+    font-family: "Maven Pro", sans-serif;
+}
+
+h1{
+    background-color: steelblue;
+    text-align: center;
+    color: white;
+    margin:0;
+    padding: 20px 0;
+    white-space: pre;
+    height: 80px;
+}
+
+#stripe{
+    background-color: white;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.square{
+    width: 30%;
+    background-color:steelblue;
+    padding-bottom: 30%;
+    float: left;
+    margin: 1% 1.6%;
+    border-radius: 15%;
+}
+
+.container{
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+button{
+    border: none;
+    background: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 100%;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+#Hard, #Easy{
+    visibility: hidden;
+}
+
+#message{
+    display: inline-block;
+    width: 30%;
+}
+
+#start{
+    margin: auto;
+    display: block;
+    height: 50px;
+    width: 100px;
+    font-size: x-large;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: white;
+    border-radius: 10%;
+    outline: none;
+}
+
+.selected{
+    color:white;
+    background-color: steelblue;
+}
+
+#reset{
+    visibility: hidden;
+}
+
+.square:hover{
+    box-shadow: inset 0px 0px 0px 3px white;
+    box-sizing: border-box;
+}
+
+.color-hidden{
+    background-color: steelblue !important;
+}
