@@ -9,19 +9,21 @@ var messageDisplay = document.getElementById("message");
 var resetBtn = document.getElementById("reset");
 var hide;
 var show;
-var chck;
+var game;
 
-// initiate game when start is clicked
+
 startBtn.addEventListener("click",function(){
     init();
 })
 
-// Removes all the hidden class from the cards and change h1 background
 resetBtn.addEventListener("click",function(){
     for (var i = 0; i < squares.length; i++){
+        // Removes all the hidden class and event listeners from squares
         squares[i].classList.remove("color-hidden");
+        squares[i].removeEventListener("click",check);
     }
     h1.style.backgroundColor = "#4682b4";
+    messageDisplay.textContent = "";
     init();
 })
 
@@ -29,15 +31,17 @@ function init(){
     prep();
     updateH1();
     showColors();
-    setTimeout(hideColors, 5000);
-    setTimeout(colorDisplay, 5000);
-    setTimeout(check, 5000);
+    // Add gameplay after a timer
+    hide = setTimeout(hideColors, 5000);
+    show = setTimeout(colorDisplay, 5000);
+    game = setTimeout(play, 5000);
 }
 
 function prep(){
-    clearTimeout(hideColors);
-    clearTimeout(colorDisplay);
-    clearTimeout(check);
+    // Remove timers of all functions
+    clearTimeout(hide);
+    clearTimeout(show);
+    clearTimeout(game);
     startBtn.style.visibility = "hidden";
     resetBtn.style.visibility = "visible";
 }
@@ -91,6 +95,7 @@ function pickColor(){
 }
 
 function hideColors(){
+    // Add hide class to all squares
     for(var i =0; i<squares.length; i++){
         if(colors[i]){
             squares[i].style.display = "block";
@@ -108,26 +113,28 @@ function colorDisplay(){
     h1.textContent = "LOOK FOR \r\n THIS COLOR!"
 }
 
-function check(){
+function play(){
     for(var i = 0; i<squares.length; i++){
         // add click listeners to squares
-        squares[i].addEventListener("click",function(){
-            this.classList.remove("color-hidden");
-            // grab color of clicked square
-            var clickedColor = this.style.backgroundColor;
-            // compare color to pickedColor
-            if(clickedColor === pickedColor){
-                messageDisplay.textContent = "Correct!";
-                h1.textContent = "Correct!";
-                changeColors(clickedColor);
-            }
-            else{
-                this.style.backgroundColor = "#232323";
-                messageDisplay.textContent = "Try Again!";
-            }
-        });
+        squares[i].addEventListener("click",check);
     }
 
+}
+
+function check(){
+    this.classList.remove("color-hidden");
+    // grab color of clicked square
+    var clickedColor = this.style.backgroundColor;
+    // compare color to pickedColor
+    if(clickedColor === pickedColor){
+        messageDisplay.textContent = "Correct!";
+        h1.textContent = "congratulations\r\n You got it";
+        changeColors(clickedColor);
+    }
+    else{
+        this.style.backgroundColor = "#232323";
+        messageDisplay.textContent = "Try Again!";
+    }
 }
 
 function changeColors(color){
