@@ -128,7 +128,7 @@ function check(){
     // compare color to pickedColor
     if(clickedColor === pickedColor){
         messageDisplay.textContent = "Correct!";
-        h1.textContent = "congratulations\r\n You got it";
+        h1.textContent = "Congratulations\r\n You got it";
         changeColors(clickedColor);
     }
     else{
